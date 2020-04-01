@@ -26,7 +26,7 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
         protected static $type        = 'tool';
         protected static $directory   = 'coreSocialmedia';
         protected static $name        = 'Socialmedia Link Manager';
-        protected static $version     = '0.1';
+        protected static $version     = '0.2';
         protected static $description = 'Manage your Social Media Services here<br /><small>Icon by <a href="https://pixabay.com/illustrations/social-media-3d-render-bubble-2636256/">Pixabay</a></small>';
         protected static $author      = "Black Cat Development";
         protected static $guid        = "d3079e37-179a-4e79-ae69-3c454adc3594";
@@ -40,8 +40,7 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
         public static function edit()
         {
             // check permissions
-            if(!self::user()->hasPerm('socialmedia_site_edit'))
-                self::printFatalError('You are not allowed for the requested action!');
+            self::user()->checkPermission('socialmedia_site_edit');
 
             // field name
             $field = \CAT\Helper\Validate::get('name','string');
@@ -76,8 +75,7 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
         public static function enable()
         {
             // check permissions
-            if(!self::user()->hasPerm('socialmedia_site_edit'))
-                self::printFatalError('You are not allowed for the requested action!');
+            self::user()->checkPermission('socialmedia_site_edit');
 
             $item    = \CAT\Helper\Validate::get("item","numeric");
             $type    = \CAT\Helper\Validate::get("url","string");
@@ -104,6 +102,8 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
          **/
         public static function tool()
         {
+            self::user()->checkPermission('socialmedia_site_edit');
+
             // get available services
             $services = \CAT\Helper\Socialmedia::getServices(CAT_SITE_ID);
             return self::tpl()->get(
@@ -152,7 +152,5 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
             }
             return false;
         }   // end function exists()
-        
-
     }
 }
