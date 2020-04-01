@@ -32,6 +32,8 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
         protected static $guid        = "d3079e37-179a-4e79-ae69-3c454adc3594";
         protected static $license     = "GNU General Public License";
 
+        const SOCIALMEDIA_EDIT        = 'socialmedia_site_edit';
+
         /**
          *
          * @access public
@@ -40,7 +42,7 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
         public static function edit()
         {
             // check permissions
-            self::user()->checkPermission('socialmedia_site_edit');
+            self::user()->checkPermission(SOCIALMEDIA_EDIT);
 
             // field name
             $field = \CAT\Helper\Validate::get('name','string');
@@ -75,7 +77,7 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
         public static function enable()
         {
             // check permissions
-            self::user()->checkPermission('socialmedia_site_edit');
+            self::user()->checkPermission(SOCIALMEDIA_EDIT);
 
             $item    = \CAT\Helper\Validate::get("item","numeric");
             $type    = \CAT\Helper\Validate::get("url","string");
@@ -102,7 +104,7 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
          **/
         public static function tool()
         {
-            self::user()->checkPermission('socialmedia_site_edit');
+            self::user()->checkPermission(SOCIALMEDIA_EDIT);
 
             // get available services
             $services = \CAT\Helper\Socialmedia::getServices(CAT_SITE_ID);
