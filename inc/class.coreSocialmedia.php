@@ -27,7 +27,7 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
         protected static $directory   = 'coreSocialmedia';
         protected static $name        = 'Socialmedia Link Manager';
         protected static $version     = '0.1';
-        protected static $description = "Manage your Social Media Services here";
+        protected static $description = 'Manage your Social Media Services here<br /><small>Icon by <a href="https://pixabay.com/illustrations/social-media-3d-render-bubble-2636256/">Pixabay</a></small>';
         protected static $author      = "Black Cat Development";
         protected static $guid        = "d3079e37-179a-4e79-ae69-3c454adc3594";
         protected static $license     = "GNU General Public License";
@@ -49,8 +49,6 @@ if(!class_exists('\CAT\Addon\coreSocialmedia',false))
             $value = \CAT\Helper\Validate::get('value','string');
             // id
             $id    = \CAT\Helper\Validate::get('pk','numeric');
-
-            
 
             if($field && $value && $id) {
                 $table = 'socialmedia';
